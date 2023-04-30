@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/912e452282.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <div class="navigation">
+        
+        <nav>
+            <h1>Blue Events</h1>
+            <ul>
+                <li>Events</li>
+                <li>Home</li>
+                <li>Contact Us</li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-container">
+        
+            <div class="event-post">
+                <div class="event-head <%=event.eventImage%>">
+                    <img src="../../images/<%=event.eventImage%>.png" alt="">
+                    <h1><%= event.title %></h1>
+                </div>
+                
+                
+                
+                <%if(event.price>0){%>
+                    <div class="register-info">
+                
+                        <div class="eventRegDetails">
+                            <h1><i class="fa fa-stopwatch"></i> Starts In:</h1>
+                            
+                            <%if(Math.round((event.date-Date.now())/(1000*60*60*24),0)>0){%>
+                                <h2><%= Math.round((event.date-Date.now())/(1000*60*60*24),0)%> Days</h2>
+                                <%}else{%>
+                                    <h2><%= Math.round((event.date-Date.now())/(1000*60*60),0)%> Hours</h2>
+                                <%}%>
+
+                            <br>
+                            <p><i class="fa fa-person-circle-question"></i> Event Venue: <%= event.venueType %></p>
+                            <p><i class="fa fa-tags"></i> Cost Per Ticket: <%=event.currency%>.<%= event.price %></p>
+                            <p><i class="fa-regular fa-calendar"></i> Date and Time: <%= event.date %></p>
+                            
+                        </div>
+                        <p>Welcome to the registration page. Note that the event you are about to register for is <strong>PAID.</strong> And no entry fee is charged upon arrival. Transactions are done strictly through Paypal, VISA and Mpesa.</p>
+                    </div>
+                    <%if(Math.round((event.date-Date.now())/(1000*60*60),0)>0){%>
+                    
+                    <form action="/events/register/<%= event.slug %>" method="POST" class="frm-del regForm">
+                        <label for="qty"><i class="fa fa-ticket"></i> Tickets</label>
+                            <input type="number" name="qty" id="qty" value="1" min="1" max="4" oninput="changeInput(this)" style="width:10%;">
+                            <br>
+                            <br>
+                        <button type="submit" class="del-btn"><i class="fa fa-ticket"></i> Payment  | <i class="fa fa-credit-card"></i> <i class="fa fa-money-bills"></i> <%= event.currency %> <%= event.price %> </button>
+                    </form>
+                    <%}%>
+                <%}else {%>
+                    <div class="register-info">
+                
+                        <div class="eventRegDetails">
+                            <h1><i class="fa fa-stopwatch"></i> Starts In:</h1>
+                            <%if(Math.round((event.date-Date.now())/(1000*60*60*24),0)>0){%>
+                            <h2><%= Math.round((event.date-Date.now())/(1000*60*60*24),0)%> Days</h2>
+                            <%}else{%>
+                                <h2><%= Math.round((event.date-Date.now())/(1000*60*60),0)%> Hours</h2>
+                            <%}%>
+                            
+                            <br>
+                            <p><i class="fa fa-person-circle-question"></i> Event Venue: <%= event.venueType %></p>
+                            <p><i class="fa fa-tags"></i> Cost Per Ticket: <%=event.currency%>.<%= event.price %></p>
+                            <p><i class="fa-regular fa-calendar"></i> Date and Time: <%= event.date %></p>
+                            
+                        </div>
+                        <p>Welcome to the registration page. Note that the event you are about to register for is <strong>FREE.</strong> And no entry fee is charged upon arrival. We hope you will enjoy the event.</p>
+                    </div>
+                    <%if(Math.round((event.date-Date.now())/(1000*60*60),0)>0){%>
+                    <form action="/events/register/<%= event.slug %>" method="POST" class="frm-del regForm">
+                        <label for="qty"><i class="fa fa-ticket"></i> Tickets</label>
+                            <input type="number" name="qty" id="qty" value="1" readonly style="width:10%;">
+                            <br>
+                            <br>
+                        <button type="submit" class="del-btn"><i class="fa fa-clipboard-check"></i> Next</button>
+                    </form>
+                    <%}%>
+                <% } %>
+                
+               
+
+                    
+            </div>
+        
+    </div>
+    <script>
+        //checks inputs beyond the maximum and returns the input to maximum
+        function changeInput(input) {
+            if (input.value > input.max || input.value>=10) input.value = input.max;
+          }
+
+          
+          
+    </script>
+</body>
+</html>

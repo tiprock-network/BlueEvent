@@ -1,0 +1,18 @@
+<% if(typeof errs !='undefined') { %>
+    <% errs.forEach(function (err){ %>
+        
+        <div class="msg red"> <p><i class="fa fa-triangle-exclamation"></i> <%= err.msg %></p></div>
+    <% }); %>
+<% } %>
+
+<% if(success_msg != ''){ %>
+    <div class="msg green"> <p><i class="fa fa-circle-check"></i> <%= success_msg %></p></div>
+<% } %>
+
+<% if(error_msg != ''){ %>
+    <div class="msg red"> <p><i class="fa fa-triangle-exclamation"></i> <%= error_msg %></p></div>
+<% } %>
+
+<% if(error != ''){ %>
+    <div class="msg red"> <p><i class="fa fa-triangle-exclamation"></i> <%= error %></p></div>
+<% } %>

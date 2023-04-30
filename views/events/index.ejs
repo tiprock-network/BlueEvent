@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/912e452282.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="navigation">
+        
+        <nav>
+            <h1>Blue Events</h1>
+            <ul>
+                <li>Events</li>
+                <li>Home</li>
+                
+               <% if(user){ %>
+               
+               <li><a href="/users/logout">Logout</a></li>
+               <% if(user.userType=="admin"){ %>
+                <li><a href="/events/new">Create Event</a></li>
+               <% } %>
+               <% }else{ %>
+                <li><a href="/users/signup">Create Account</a></li>
+                <li><a href="/users/login">Login</a></li>
+                
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+   
+    <% if(!user){ %>
+
+    <div class="main-container">
+        <%- include('../partials/_messages') %>
+        <% events.forEach(event=>{ %>
+            <div class="event-post">
+                <div class="event-head <%=event.eventImage%>">
+                    <img src="../images/<%=event.eventImage%>.png" alt="">
+                    <h1><%= event.title %></h1>
+                </div>
+                <p class="eventinfo-section"><i class="fa fa-id-badge"></i> <%= event.speakers+' ' %> <a href="<%= event.locationLink %>"><i class="fa fa-map-location-dot"></i> <%= event.venue%></a> <a href="<%= event.locationLink %>"><i class="fa fa-person-walking"> <i class="fa fa-chalkboard-user"></i> </i> <%= event.venueType %></a></p>
+                <p class="eventinfo-section"><i class="fa fa-calendar-days"></i> <%= event.date %></p>
+                <div class="description">
+                    <p class="info-paragraph"><i class="fa fa-circle-info"></i> Event Description</p>
+                    <br>
+                    <p class="event-content"><%= event.desc %></p>
+                </div>
+                <br>
+                <br>
+                
+                <a href="/events/<%= event.slug %>">More info</a>
+                <a href="/events/register/<%= event.slug %>"><i class="fa fa-ticket"></i> Register  | <i class="fa fa-credit-card"></i> <i class="fa fa-money-bills"></i> <%= event.currency %> <%= event.price %></a>
+                
+            </div>
+        <% }) %>
+    </div>
+
+    <% }else{ %>
+        <div class="main-container">
+            <%- include('../partials/_messages') %>
+            <% events.forEach(event=>{ %>
+                <div class="event-post">
+                    <div class="event-head <%=event.eventImage%>">
+                        <img src="../images/<%=event.eventImage%>.png" alt="">
+                        <h1><%= event.title %></h1>
+                    </div>
+                    <p class="eventinfo-section"><i class="fa fa-id-badge"></i> <%= event.speakers+' ' %> <a href="<%= event.locationLink %>"><i class="fa fa-map-location-dot"></i> <%= event.venue%></a> <a href="<%= event.locationLink %>"><i class="fa fa-person-walking"> <i class="fa fa-chalkboard-user"></i> </i> <%= event.venueType %></a></p>
+                    <p class="eventinfo-section"><i class="fa fa-calendar-days"></i> <%= event.date %></p>
+                    <div class="description">
+                        <p class="info-paragraph"><i class="fa fa-circle-info"></i> Event Description</p>
+                        <br>
+                        <p class="event-content"><%= event.desc %></p>
+                    </div>
+                    <br>
+                    <br>
+                    <a href="/events/register/<%= event.slug %>"><i class="fa fa-ticket"></i> Register  | <i class="fa fa-credit-card"></i> <i class="fa fa-money-bills"></i> <%= event.currency %> <%= event.price %></a>
+                    <a href="/events/<%= event.slug %>">More info</a>
+                    <% if(user.userType =="admin"){ %>
+                    <form action="/events/<%= event.id %>?_method=DELETE" method="POST" class="frm-del">
+                        <button type="submit" class="del-btn"><i class="fa fa-calendar-xmark"></i> Delete Event</button>
+                    </form>
+                    <% } %>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</body>
+</html>

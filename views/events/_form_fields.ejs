@@ -1,0 +1,76 @@
+
+    <label for="eventname"><i class="fa fa-pencil"></i> Event Title</label>
+    <br>
+    <input type="text" name="eventname" id="eventname" placeholder="e.g. Azure App Service">
+    <br>
+    <br>
+
+
+    <label for="eveSpeaker"><i class="fa fa-id-badge"></i> Event Speakers</label>
+    <br>
+    <input type="text" name="eventSpeaker" id="eventSpeaker" placeholder="e.g. John Beta Ambassador">
+    <br>
+    <br>
+
+    <label for="venue"><i class="fa fa-map-location-dot"></i> Venue</label>
+    <input type="text" name="venue" id="venue" style="width:30%;" placeholder="e.g. Kabarak Bethel Auditorium">
+    <label for="venueType"> Type</label>
+    
+    <select name="venueType" id="venueType">
+        <option value="Physical">Physical</option>
+        <option value="Microsoft Teams">Microsoft Teams</option>
+        <option value="Google Meet">Google Meet</option>
+        <option value="Zoom">Zoom</option>
+    </select>
+    <br>
+    <br>
+
+    <label for="location"><i class="fa fa-location-dot"></i> Location Link</label>
+    <br>
+    <input type="text" name="location" id="location" placeholder="e.g. Paste Google Maps Link (Optional)">
+    <br>
+    <br>
+
+    <label for="price"><i class="fa fa-money-bill-transfer"></i> Ticket Cost</label>
+    <select name="currency" id="currency">
+        <option value="Ksh">Ksh</option>
+        <option value="$">US Dollar $</option>
+    </select>
+    <input type="number" name="price" id="price" value="0.00" placeholder="0.00" style="width:20%;">
+    <br>
+    <br>
+    
+
+    <label for="evedate"><i class="fa fa-calendar-days"></i> Event Date & <i class="fa fa-clock"></i> Time</label>
+    <br>
+    <input type="datetime-local" name="evedate" id="evedate">
+    <br>
+    <br>
+
+    
+
+    <label for="eventImage"><i class="fa fa-image"></i> Event Image Theme</label>
+    <br>
+    <select name="eventImage" id="eventImage">
+        <option value="blue-white">Blue White Trees</option>
+        <option value="blue-navy">Navy Blue </option>
+        <option value="white-blue">White Blue Trees</option>
+
+    </select>
+    <br>
+    <br>
+
+    <label for="eventlink"><i class="fa fa-link"></i> Event Registration Link</label>
+    <br>
+    <input type="text" name="eventlink" id="eventlink" placeholder="https://bit.ly/aArt89">
+    <br>
+    <br>
+   
+
+    <label for="evedesc"><i class="fa fa-info-circle"></i> Description</label>
+    <br>
+    <textarea cols="30" rows="15" name="evedesc" id="evedesc" placeholder="Your description goes here..." draggable="false"></textarea>
+    <br>
+    <br>
+
+    <button type="submit"><i class="fa-solid fa-calendar-plus"></i> Create Event</button>

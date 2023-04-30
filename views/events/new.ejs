@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/912e452282.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="navigation">
+        
+        <nav>
+            <h1>Blue Events</h1>
+            <ul>
+                <li>Events</li>
+                <li>Home</li>
+                <li>Contact Us</li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-container">
+       <%if(user.userType=="admin"){%>
+        <div class="event-label"><p><i class="fa fa-plus"></i> Add New Event</p></div>
+        <form action="/events" method="POST">
+        <%- include('_form_fields') %>
+        </form>
+       <%}else{%>
+        <div class="msg red"> <p><i class="fa fa-triangle-exclamation"></i> This page is not available</p></div>
+       <%}%>
+    </div>
+</body>
+</html>

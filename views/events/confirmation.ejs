@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/912e452282.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+    <div class="navigation">
+        
+        <nav>
+            <h1>Blue Events</h1>
+            <ul>
+                <li>Events</li>
+                <li>Home</li>
+                <li>Contact Us</li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-container">
+        
+            <div class="event-post">
+                <%if(user.id===reg.userId){%>
+                    <div class="register-info">
+                
+                        <div class="eventRegDetails">
+                            <h1><i class="fa fa-circle-check" style="font-size: 22px;"></i> You can now use the link to register:</h1>
+                            <p>(For online meetings)</p>
+                            
+                            <h2><%= reg.title %></h2>
+                            
+                            <br>
+                            
+                            <p><i class="fa fa-tags"></i> Cost : <%= reg.price %></p>
+                            <p><i class="fa-regular fa-calendar"></i> Date and Time: <%= reg.date %></p>
+                            <p><a href="<%=reg.eventlink%>"><%=reg.eventlink%></a></p>
+                            <p>Thank you for choosing, &copy; Blue Events.</p>
+                        </div>
+                        
+                    </div>
+                <% }else{%>
+                    <div class="eventRegDetails">
+                        
+                        
+                        <h2>No Events Found</h2>
+                        
+                        <br>
+                        
+                        
+                        <p>Kindly register for an event.</p>
+                    </div>
+                    <% } %>
+            </div>
+        
+    </div>
+   
+</body>
+</html>

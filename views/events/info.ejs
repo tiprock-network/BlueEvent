@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLSA Kabarak</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/912e452282.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="navigation">
+        
+        <nav>
+            <h1>Microsoft Learn Student Community Kabarak</h1>
+            <ul>
+                <li>Events</li>
+                <li>Home</li>
+                <li>Contact Us</li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-container">
+        
+            <div class="event-post">
+                <div class="event-head <%=event.eventImage%>">
+                    <img src="../images/<%=event.eventImage%>.png" alt="">
+                    <h1><%= event.title %></h1>
+                </div>
+                
+                <a href="/events/register/<%= event.slug %>"><i class="fa fa-ticket"></i> Register  | <i class="fa fa-credit-card"></i> <i class="fa fa-money-bills"></i> <%= event.currency %> <%= event.price %> </a>
+                
+                <p class="eventinfo-section"><i class="fa fa-id-badge"></i> <%= event.speakers+' ' %> <a href="<%= event.locationLink %>"><i class="fa fa-map-location-dot"></i> <%= event.venue%></a> <a href="<%= event.locationLink %>"><i class="fa fa-person-walking"> <i class="fa fa-chalkboard-user"></i> </i> <%= event.venueType %></a></p>
+                <p class="eventinfo-section"><i class="fa fa-calendar-days"></i> <%= event.date %></p>
+                <br>
+                
+                <div class="description">
+                    <p class="info-paragraph"><i class="fa fa-circle-info"></i> Event Description</p>
+                    <br>
+                    <p class="event-content"><%= event.desc %></p>
+                </div>
+                <br>
+                <br>
+
+                
+                <% if(user){ %>
+                    <% if(user.userType =="admin"){ %>
+                <a href="/events/edit/<%= event.id %>"><i class="fa-regular fa-calendar-check"></i> Edit Event</a>
+                
+                <form action="/events/<%= event.id %>?_method=DELETE" method="POST" class="frm-del">
+                    <button type="submit" class="del-btn"><i class="fa fa-calendar-xmark"></i> Delete Event</button>
+                </form>
+                <% } %>
+                <% } %>
+            </div>
+        
+    </div>
+</body>
+</html>

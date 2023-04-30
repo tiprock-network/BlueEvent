@@ -1,0 +1,50 @@
+const mongoose=require('mongoose')
+
+const registrationSchema=new mongoose.Schema({
+    title:{
+        type:String,
+        required:true
+    },
+    price:{
+        type:Number,
+        required:true
+    },
+    currency:{
+        type:String,
+        required:true
+    },
+    date:{
+        type:Date,
+        required:true
+    },
+    quantity:{
+        type:Number,
+        required:true
+    },
+    userName:{
+        type:String,
+        required:true
+    },
+    userPhone:{
+        type:String,
+        required:true
+    },
+    userId:{
+        type:String,
+        required:true
+    },
+    email:{
+        type:String,
+        required:true
+    },
+    eventlink:{
+        type:String,
+        required:true
+    },
+    dateRegistered:{
+        type:Date,
+        default:Date.now()
+    },
+})
+
+module.exports=mongoose.model('Registration',registrationSchema)
